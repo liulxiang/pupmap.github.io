@@ -105,8 +105,8 @@ header.scrolled{
 }
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
 .brand-mark{
-    width:42px;height:42px;border-radius:14px;flex:none;
-    background:linear-gradient(145deg,var(--navy),#41639E);
+    width:60px;height:60px;border-radius:14px;flex:none;
+    background:#fff;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 6px 14px rgba(47,75,124,.22);
 }
@@ -713,8 +713,11 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
 <header id="header">
     <div class="container nav-inner">
         <a class="brand" href="#top" aria-label="PupMap 小狗路书 首页">
-            <span class="brand-mark"><svg aria-hidden="true"><use href="#ic-paw"/></svg></span>
-            <span>
+            <span class="brand-mark">
+                <!-- <svg aria-hidden="true"><use href="#ic-paw"/></svg> -->
+                <img src="./assets/logo.png" alt="PupMap 小狗路书">
+            </span>
+            <span style="text-align: center;">
                 <span class="brand-name">小狗路书</span>
                 <span class="brand-sub" style="display:block">PupMap</span>
             </span>
@@ -1131,13 +1134,13 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
                 <div class="coop-card">
                     <!-- 合作微信二维码占位：替换为真实图片 -->
                     <div class="qr-big" role="img" aria-label="合作微信二维码占位图">
-                        <svg aria-hidden="true"><use href="#ic-chat"/></svg>
+                        <img src="./assets/xhc_wx.jpg" alt="合作微信二维码">
                         <small>合作微信二维码</small>
                     </div>
                     <h4>合作对接，请添加微信</h4>
                     <p class="sub">添加后我们会拉你进商家沟通群</p>
                     <div class="wechat-line">
-                        <span class="id" id="wechatId">pupmap2026</span>
+                        <span class="id" id="wechatId">chongkelaile</span>
                         <button class="copy-btn" id="copyBtn" type="button">
                             <svg class="ico" aria-hidden="true"><use href="#ic-copy"/></svg>
                             复制
@@ -1182,7 +1185,7 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
 
             <div class="foot-col">
                 <h5>联系我们</h5>
-                <p>微信：pupmap2026</p>
+                <p>微信：chongkelaile</p>
                 <p style="font-size:13px;color:rgba(255,255,255,.6)">商家合作请备注门店名称</p>
             </div>
         </div>
