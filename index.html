@@ -105,11 +105,12 @@ header.scrolled{
 }
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
 .brand-mark{
-    width:60px;height:60px;border-radius:14px;flex:none;
+    width:60px;height:60px;border-radius:50%;flex:none;overflow:hidden;
     background:#F8F5EC;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 6px 14px rgba(47,75,124,.22);
 }
+.brand-mark img{width:100%;height:100%;object-fit:cover;display:block}
 .brand-mark svg{width:22px;height:22px;fill:var(--orange)}
 .brand-name{font-weight:800;font-size:20px;color:var(--navy);letter-spacing:.5px;line-height:1.1}
 .brand-sub{font-size:11.5px;color:var(--muted);letter-spacing:2.4px;text-transform:uppercase;line-height:1.4}
@@ -502,7 +503,7 @@ h2{
 #story{background:var(--cream-2);border-block:1px solid var(--line)}
 .story-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(30px,5vw,68px);align-items:start}
 .story-left{position:sticky;top:calc(var(--header-h) + 30px)}
-@media(max-width:900px){.story-left{position:static}}
+@media(max-width:1024px){.story-left{position:static}}
 .story-quote{
     font-size:clamp(22px,2.6vw,30px);line-height:1.45;color:var(--navy);
     font-weight:800;letter-spacing:-.3px;margin-bottom:22px;
@@ -559,6 +560,13 @@ h2{
 }
 .coop-card .qr-big svg{width:34px;height:34px;fill:rgba(47,75,124,.35)}
 .coop-card .qr-big small{font-size:10.5px;letter-spacing:.6px}
+/* 已放入真实二维码图片时，去掉占位底纹与文字 */
+.coop-card .qr-big:has(img){
+    background:#fff;border:none;padding:0;overflow:hidden;
+    box-shadow:0 0 0 1px var(--line),0 6px 16px rgba(31,46,74,.08);
+}
+.coop-card .qr-big:has(img) small{display:none}
+.coop-card .qr-big img{width:100%;height:auto;border-radius:14px}
 .coop-card h4{font-size:16px;color:var(--navy);text-align:center;margin-bottom:4px}
 .coop-card .sub{font-size:12.5px;color:var(--muted);text-align:center;margin-bottom:16px}
 .wechat-line{
@@ -618,11 +626,10 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
     .nav-links{gap:20px}
     .nav-links a{font-size:14px}
     .hero-grid{grid-template-columns:1fr;gap:36px}
-    .hero-figure{order:-1;max-width:520px}
+    .hero-figure{order:-1;max-width:520px;margin-inline:auto}
     .float-card.a{left:6px;bottom:-14px}
     .float-card.b{right:6px;top:-10px}
     .story-grid{grid-template-columns:1fr;gap:34px}
-    .coop-grid{grid-template-columns:1fr;gap:34px}
     .strip-inner{grid-template-columns:repeat(2,1fr)}
     .strip-item:nth-child(2){border-right:none}
     .strip-item:nth-child(1),.strip-item:nth-child(2){border-bottom:1px solid var(--line)}
@@ -632,6 +639,8 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
 @media(max-width:860px){
     .nav-links{display:none}
     .burger{display:flex}
+    .coop-grid{grid-template-columns:1fr;gap:30px}
+    .coop-card{max-width:420px;margin-inline:auto}
     .preview-grid{grid-template-columns:1fr;gap:36px}
     .device{width:min(240px,72vw)}
     .hero{padding-top:34px}
@@ -748,7 +757,7 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
         <a href="#testimonial">用户评价 <svg class="ico" aria-hidden="true"><use href="#ic-arrow"/></svg></a>
         <a href="#story">品牌故事 <svg class="ico" aria-hidden="true"><use href="#ic-arrow"/></svg></a>
         <a href="#cooperate">商家合作 <svg class="ico" aria-hidden="true"><use href="#ic-arrow"/></svg></a>
-        <a class="btn btn-primary" href="#preview">立即体验小程序</a>
+        <a class="btn btn-primary" href="#preview" style="justify-content: center;">立即体验小程序</a>
     </div>
 </div>
 
@@ -762,19 +771,19 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
         <div class="hero-copy">
             <span class="eyebrow reveal"><i class="dot"></i>宠物友好 · 城市遛狗护照</span>
             <h1 class="reveal" style="--d:60ms">
-                <span class="line">带着毛孩子，</span>
-                <span class="line">走遍<em>每条小狗友好</em>的路</span>
+                <span class="line">带狗出门，别再靠猜</span>
+                <span class="line">能走的路，<em>都在路书里</em></span>
             </h1>
             <p class="hero-lead reveal" style="--d:120ms">
-                <b>PupMap 小狗路书</b>把城市里能带狗进的公园、草坪、咖啡馆与宠物店，收进一张专属地图。
-                规划安全路线、记录遛狗轨迹、线下扫码集章——一本只属于你和小狗的城市路书。
+                <b>PupMap 小狗路书</b>把全城能带狗进的公园、草坪、咖啡馆和宠物店，做成一张能筛的地图。
+                出门前几分钟定好路线，走完自动存下轨迹，路过点位再扫一枚印章。
             </p>
             <div class="hero-actions reveal" style="--d:180ms">
                 <a class="btn btn-primary" href="#preview">
-                    打开小程序体验
+                    看看小程序长什么样
                     <svg class="ico" aria-hidden="true"><use href="#ic-arrow"/></svg>
                 </a>
-                <a class="btn btn-ghost" href="#feature">看看有哪些功能</a>
+                <a class="btn btn-ghost" href="#feature">了解四个功能</a>
             </div>
 
             <!-- 扫码卡片（占位，替换为真实小程序码） -->
@@ -813,19 +822,19 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
         <div class="strip-inner reveal">
             <div class="strip-item">
                 <svg class="ico" aria-hidden="true"><use href="#ic-pin"/></svg>
-                <div><strong>可携犬点位</strong><span>公园、草坪、门店一图可查</span></div>
+                <div><strong>可携犬点位</strong><span>一图查清能不能进</span></div>
             </div>
             <div class="strip-item">
                 <svg class="ico" aria-hidden="true"><use href="#ic-route"/></svg>
-                <div><strong>安全路线规划</strong><span>绕开禁犬区域，少走冤枉路</span></div>
+                <div><strong>安全路线规划</strong><span>绕开禁犬区，少走冤枉路</span></div>
             </div>
             <div class="strip-item">
                 <svg class="ico" aria-hidden="true"><use href="#ic-pulse"/></svg>
-                <div><strong>轨迹自动记录</strong><span>里程、时长、路线自动留存</span></div>
+                <div><strong>轨迹自动记录</strong><span>里程时长，自动存档</span></div>
             </div>
             <div class="strip-item">
                 <svg class="ico" aria-hidden="true"><use href="#ic-stamp"/></svg>
-                <div><strong>线下扫码集章</strong><span>一本专属小狗城市护照</span></div>
+                <div><strong>线下扫码集章</strong><span>一本小狗的城市护照</span></div>
             </div>
         </div>
     </div>
@@ -836,8 +845,8 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
     <div class="container">
         <div class="head center reveal">
             <span class="kicker">Core Features</span>
-            <h2>四个功能，解决带狗出门的全部纠结</h2>
-            <p>去哪能进、怎么走不踩禁犬区、今天走了多远、这趟值不值得纪念——都在一个小程序里。</p>
+            <h2>查得到、走得对、记得住、盖得满</h2>
+            <p>去哪能进、怎么走不踩禁犬区、今天走了多远、这趟值不值得留个纪念——四个问题，一个小程序全答上。</p>
         </div>
 
         <div class="feature-grid">
@@ -845,28 +854,28 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
                 <span class="card-no">01</span>
                 <div class="card-ico"><svg class="ico" aria-hidden="true"><use href="#ic-pin"/></svg></div>
                 <h3>宠物友好地图</h3>
-                <p>收录全城宠物友好公园、草坪、咖啡馆、门店，按“可携犬 / 有饮水 / 可入内”筛选，一眼就知道能不能进。</p>
+                <p>公园、草坪、咖啡馆、宠物店，按「可携犬 / 有饮水 / 可入内」筛选，走到门口不用再犹豫。</p>
             </article>
 
             <article class="card reveal" style="--d:80ms">
                 <span class="card-no">02</span>
                 <div class="card-ico"><svg class="ico" aria-hidden="true"><use href="#ic-route"/></svg></div>
                 <h3>路线规划</h3>
-                <p>一键规划安全遛狗路线，自动避开禁犬区域与车流密集路段，找到真正适合小狗散步的那条路。</p>
+                <p>输入起点和想去的地方，自动绕开禁犬区与车流密集路段，挑一条小狗走起来舒服的路。</p>
             </article>
 
             <article class="card reveal" style="--d:160ms">
                 <span class="card-no">03</span>
                 <div class="card-ico"><svg class="ico" aria-hidden="true"><use href="#ic-pulse"/></svg></div>
                 <h3>轨迹记录</h3>
-                <p>自动保存遛狗轨迹，记录里程与时长，按月生成出行小结，留存你和小狗一起走过的每一段路。</p>
+                <p>出门自动记录里程、时长和路线，按月生成出行小结，一年下来能翻出几十趟散步。</p>
             </article>
 
             <article class="card reveal" style="--d:240ms">
                 <span class="card-no">04</span>
                 <div class="card-ico"><svg class="ico" aria-hidden="true"><use href="#ic-stamp"/></svg></div>
                 <h3>打卡集章护照</h3>
-                <p>线下点位扫码打卡，收集专属印章，拼满一整页就是一本小狗的城市探险护照，攒满还能换礼物。</p>
+                <p>到点位扫码盖一枚章，集满一页就是小狗的城市探险护照；集满还能换一份纪念礼物。</p>
             </article>
         </div>
     </div>
@@ -877,8 +886,8 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
     <div class="container">
         <div class="head center reveal">
             <span class="kicker">App Preview</span>
-            <h2>打开就懂的三件事</h2>
-            <p>找点位、记轨迹、盖印章。界面不堆功能，出门前 10 秒就能定好今天去哪。</p>
+            <h2>打开就懂，不用教</h2>
+            <p>找点位、记轨迹、盖印章，三个入口都在首屏。界面不堆功能，出门前 10 秒就能定好今天去哪。</p>
         </div>
 
         <div class="preview-grid">
@@ -936,7 +945,7 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
                 </div>
                 <div class="caption">
                     <h4>宠物友好地图</h4>
-                    <p>一图看清全城可携犬点位，按场地类型快速筛选。</p>
+                    <p>一图看清全城能带狗进的点位，按场地类型筛。</p>
                 </div>
             </div>
 
@@ -975,7 +984,7 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
                 </div>
                 <div class="caption">
                     <h4>遛狗轨迹记录</h4>
-                    <p>出门自动记录路线里程，回家一键生成出行小结。</p>
+                    <p>走一圈自动记下路线和里程，回家一键生成出行小结。</p>
                 </div>
             </div>
 
@@ -1014,7 +1023,7 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
                 </div>
                 <div class="caption">
                     <h4>小狗护照集章</h4>
-                    <p>线下扫码盖章，攒满一页解锁专属纪念与礼物。</p>
+                    <p>到点位扫码盖章，集满一页换一份纪念礼物。</p>
                 </div>
             </div>
         </div>
@@ -1041,7 +1050,7 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
                 <div class="stars" aria-label="五星好评">
                     <svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg>
                 </div>
-                <blockquote>以前遛狗总踩坑，很多地方看着像公园，走到门口才发现禁止狗狗进入。小狗路书太实用了，直接找到能带小狗奔跑的草坪，打卡集章还特别有仪式感。</blockquote>
+                <blockquote>以前遛狗全靠碰运气：看着像公园，走到门口才发现禁犬。现在出门前先查一眼，能不能进、有没有饮水点都写着。阿柚已经刷了四个草坪，印章盖了小半本。</blockquote>
                 <div class="who">
                     <span class="ava a" aria-hidden="true">阿</span>
                     <div>
@@ -1055,7 +1064,7 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
                 <div class="stars" aria-label="五星好评">
                     <svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg>
                 </div>
-                <blockquote>轨迹记录功能很省心，每次遛狗自动记录路线和里程。带着可乐打卡各个宠物友好咖啡馆、收集印章，慢慢变成我们专属的遛狗回忆册。</blockquote>
+                <blockquote>最喜欢轨迹记录。带可乐遛完，路线、里程、用时自动存好，月底翻一眼就知道这个月偷懒了几次。集章也上瘾，现在选咖啡馆都按路书上的点位来。</blockquote>
                 <div class="who">
                     <span class="ava b" aria-hidden="true">周</span>
                     <div>
@@ -1069,7 +1078,7 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
                 <div class="stars" aria-label="五星好评">
                     <svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg><svg aria-hidden="true"><use href="#ic-star"/></svg>
                 </div>
-                <blockquote>终于有专门给狗狗的地图了！周末经常用它挖掘城市新路线，入驻的商家也越来越多，带狗子出门省心太多。真心推荐给养宠家庭。</blockquote>
+                <blockquote>终于有人专门给狗做地图了。周末不知道去哪，就在上面挑个没去过的点位，走一条新路线、盖一枚新章。入驻的商家越来越多，带年糕出门心里有底。</blockquote>
                 <div class="who">
                     <span class="ava c" aria-hidden="true">夏</span>
                     <div>
@@ -1097,14 +1106,14 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
         </div>
 
         <div class="story-body reveal" style="--d:80ms">
-            <p>每一只小狗，都渴望出门探险；每一位养宠人，都想找到适合毛孩子的远方。</p>
-            <p>可我们常常会困惑：这条步道能不能带狗进入？附近哪里有宠物友好门店？哪里能让小狗自由奔跑、安心饮水？城市里很多美好的角落，藏在普通地图的盲区里——只有养狗的人，才会真正关心。</p>
+            <p>每只小狗都想出门，每个养狗的人都想带它去个好地方。</p>
+            <p>难的是出门前那几分钟的犹豫：这条步道能不能带狗进？附近有没有宠物友好门店？哪里能让它放开跑、安心喝水？城市里很多好地方，都藏在普通地图的盲区里——只有养狗的人才会关心。</p>
             <p><strong>小狗路书（PupMap）</strong>，由此诞生。</p>
             <div class="pull">
                 它是一本专属于小狗的城市路书，也是养宠家庭的城市遛狗护照。
                 <span>—— PupMap 产品定位</span>
             </div>
-            <p>我们把城市里宠物友好的公园、草坪、咖啡馆、宠物店与打卡点位一一收集，绘制成专属遛狗地图。带着小狗出发，沿路打卡集章，记录每一段一起走过的轨迹，保存每一次奔跑的瞬间。</p>
+            <p>我们把城市里宠物友好的公园、草坪、咖啡馆、宠物店和打卡点，一一走过、一一记下，画成一张专属遛狗地图。带着小狗出发，沿路盖章，把一起走过的轨迹留在手机里。</p>
             <p>不追求遥远的长途旅行，而是挖掘家门口、城市里那些适合毛孩子的路线。一条小路，一阵晚风，小狗的脚印落在路面上，你的陪伴留在路书中。</p>
             <p><strong>每一条路线，都是你和小狗共同写下的回忆。</strong></p>
         </div>
@@ -1119,11 +1128,11 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
                 <div>
                     <span class="kicker">Partner With Us</span>
                     <h2>商家合作招募</h2>
-                    <p class="lead">宠物友好咖啡馆、宠物店、公园、民宿等相关商家，欢迎入驻 PupMap 小狗路书——触达本地精准养宠人群，共建城市宠物友好生态。</p>
+                    <p class="lead">如果你的店适合狗进门——咖啡馆、宠物店、民宿、公园旁的小店，都欢迎入驻。附近正在遛狗的人，打开 PupMap 就会看到你。</p>
                     <ul class="benefits">
-                        <li><svg class="ico" aria-hidden="true"><use href="#ic-check"/></svg>地图点位曝光：被正在附近遛狗的用户直接看到</li>
-                        <li><svg class="ico" aria-hidden="true"><use href="#ic-check"/></svg>打卡集章联动：带来到店客流与复访理由</li>
-                        <li><svg class="ico" aria-hidden="true"><use href="#ic-check"/></svg>宠物友好标识：官方认证标签，建立顾客信任</li>
+                        <li><svg class="ico" aria-hidden="true"><use href="#ic-check"/></svg>地图点位曝光：被附近正在遛狗的人直接看到</li>
+                        <li><svg class="ico" aria-hidden="true"><use href="#ic-check"/></svg>打卡集章联动：客人多了一个再来的理由</li>
+                        <li><svg class="ico" aria-hidden="true"><use href="#ic-check"/></svg>宠物友好标识：官方认证标签，先把信任建立起来</li>
                     </ul>
                     <a class="btn btn-primary" href="#cooperate" id="addWechatBtn" style="background:#fff;color:var(--navy);box-shadow:0 10px 24px rgba(0,0,0,.18)">
                         添加合作微信
@@ -1342,13 +1351,13 @@ footer{background:var(--navy-deep);color:#fff;padding:clamp(40px,5vw,64px) 0 28p
         });
     }
     if (addWechatBtn) {
+        var addWechatHTML = addWechatBtn.innerHTML;
         addWechatBtn.addEventListener('click', function (e) {
             e.preventDefault();
-            copyText('pupmap2026').then(function () {
+            var id = (wechatId && wechatId.textContent || '').trim();
+            copyText(id).then(function () {
                 addWechatBtn.innerHTML = '微信号已复制 ✓';
-                setTimeout(function () {
-                    addWechatBtn.innerHTML = '添加合作微信';
-                }, 1800);
+                setTimeout(function () { addWechatBtn.innerHTML = addWechatHTML; }, 1800);
             }, function () {
                 window.location.hash = '#cooperate';
             });
